@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="{{ asset('assets/admin/fonts/SansPro/SansPro.min.css') }}" rel="stylesheet">
+    <!-- To Arabic language -->
+    {{--  <link rel="stylesheet" href=" {{ asset('assets/admin/css/bootstrap_rtl-v4.2.1/bootstrap.min.css') }} ">  --}}
+    {{--  <link rel="stylesheet" href=" {{ asset('assets/admin/css/bootstrap_rtl-v4.2.1/custom_rtl.css') }} ">  --}}
 </head>
 
 <body class="hold-transition login-page">
@@ -30,23 +33,30 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">تسجيل الدخول لبدء جلسة</p>
 
-                <form action="#" method="post">
+                <form action="{{ route('admin.showLogin') }}" method="post">
+                    @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="اسم المستخدم">
+                        <input type="text" name="username" class="form-control" placeholder="اسم المستخدم">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
+                    @error('username')
+                        <span class="input-group-append">{{ $message }}</span>
+                    @enderror
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="كلمة السر">
+                        <input type="password" name="password" class="form-control" placeholder="كلمة المرور">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    @error('password')
+                        <span class="input-group-append">{{ $message }}</span>
+                    @enderror
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+    // Route::get('logout', function() {
+    //     auth()->logout();
+    // });
+    Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+});
 
-Route::get('/', function () {
-    return view('admin.auth.login');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'guest:admin'], function() {
+    Route::get('login', [LoginController::class, 'show_login_view'])->name('admin.showLogin');
+    Route::post('login', [LoginController::class, 'login'])->name('admin.login');
 });

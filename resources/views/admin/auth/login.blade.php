@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     @error('username')
-                        <span class="input-group-append">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="input-group mb-3">
                         <input type="password" name="password" class="form-control" placeholder="كلمة المرور">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     @error('password')
-                        <span class="input-group-append">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="row">
                         <div class="col-8">

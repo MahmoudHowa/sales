@@ -22,7 +22,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">بيانات الضبط العام</h3>
+                    <h3 class="card-title card_title_center">بيانات الضبط العام</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -63,7 +63,7 @@
                                         @php
                                         $dt=new DateTime($data['updated_at']);
                                         $date=$dt->format("Y-m-d");
-                                        $time=$dt->format("H:i");
+                                        $time=$dt->format("h:i");
                                         $newDateTime=date("A",strtotime($time));
                                         $newDateTimeType= (($newDateTime == 'AM') ? 'صباحاً' : 'مساءً');
                                         @endphp
@@ -77,6 +77,7 @@
                                     @else
                                         لا يوجد تحديث
                                     @endif
+                                    <a href="{{ route('admin.adminPanelSetting.edit') }}" class="btn btn-sm btn-success">تعديل</a>
                                 </td>
                             </tr>
                         <tbody>

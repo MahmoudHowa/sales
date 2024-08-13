@@ -23,6 +23,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title card_title_center">بيانات الخزن</h3>
+                    <a class="btn btn-sm btn-secondary" href="{{ route('admin.treasuries.create') }}">إضافة خزنة </a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -31,7 +32,7 @@
                         $i=1;
                     @endphp
                     <table id="example2" style="text-align: center" class="table table-bordered table-hover">
-                        <thead>
+                        <thead class="custom_thead">
                             <th>رقم الخزنة</th>
                             <th>اسم الخزنة</th>
                             <th>رئيسية أم لا</th>
@@ -40,6 +41,7 @@
                             <th>حالة التفعيل</th>
                             <th>تاريخ الإضافة</th>
                             <th>تاريخ التحديث</th>
+                            <th></th>
                         </thead>
                         <tbody>
                             @foreach ($data as $info)
@@ -84,6 +86,10 @@
                                     @else
                                         لا يوجد تحديث
                                     @endif
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">تعديل</button>
+                                    <button data-id="{{ $info->id }}" class="btn btn-sm btn-info">المزيد</button>
                                 </td>
                             </tr>
                             @php

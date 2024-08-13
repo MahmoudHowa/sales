@@ -30,7 +30,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::post('/adminpanelsetting/update', [Admin_panel_settingsController::class, 'update'])->name('admin.adminPanelSetting.update');
     /*         start treasuries           */
     Route::get('/treasuries/index', [TreasuriesController::class, 'index'])->name('admin.treasuries.index');
-
+    Route::get('/treasuries/create', [TreasuriesController::class, 'create'])->name('admin.treasuries.create');
+    Route::post('/treasuries/store', [TreasuriesController::class, 'store'])->name('admin.treasuries.store');
 
     /*         end treasuries             */
 });

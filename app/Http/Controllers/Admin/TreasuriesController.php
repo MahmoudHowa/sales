@@ -99,4 +99,12 @@ class TreasuriesController extends Controller
             return redirect()->back()->with(['error'=> 'عفواً حدث خطأ ما'.'  '.$ex->getMessage()] )->withInput();
         }
     }
+
+    public function ajax_search(Request $request){
+        if($request->ajax()){
+            $search_by_text=$request->search_by_text;
+            $data=Treasuries::where('name','LIKE',"%{$search_by_text}%")->orderBy('id','ASC')->paginate(PAGINATION_COUNT);
+            return view('admin.treasuries.ajax_search',['data'=>$data]);
+        }
+    }
 }

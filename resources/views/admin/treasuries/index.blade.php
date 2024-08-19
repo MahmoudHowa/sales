@@ -23,6 +23,8 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title card_title_center">بيانات الخزن</h3>
+                    <input type="hidden" id="token_search" value="{{ csrf_token() }}">
+                    <input type="hidden" id="ajax_search_url" value="{{ route('admin.treasuries.ajax_search') }}">
                     <a class="btn btn-sm btn-secondary" href="{{ route('admin.treasuries.create') }}">إضافة خزنة </a>
                 </div>
                 <!-- /.card-header -->
@@ -30,12 +32,12 @@
                     <div class="col-md-4">
                         <input type="text" id="search_by_text" placeholder="بحث بالإسم" class="form-control"><br>
                     </div>
-                    @if(@isset($data) && !@empty($data))
-                    @php
-                        $i=1;
-                    @endphp
 
-                    <div class="ajax_responce_searchDiv">
+                    <div id="ajax_responce_searchDiv">
+                        @if(@isset($data) && !@empty($data))
+                        @php
+                            $i=1;
+                        @endphp
                         <table id="example2" style="text-align: center" class="table table-bordered table-hover">
                             <thead class="custom_thead">
                                 <th>رقم الخزنة</th>
@@ -103,19 +105,22 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <br>
+                        {{ $data->links() }}
+                        @else
+                        <div class="alert alert-danger">
+                            عفواً لا يوجد بيانات لعرضها   !!!
+                        </div>
+                        @endif
                     </div>
-                    <br>
-                    {{ $data->links() }}
-                    @else
-                    <div class="alert alert-danger">
-                        عفواً لا يوجد بيانات لعرضها   !!!
-                    </div>
-
-                    @endif
 
                 </div>
             </div>
         </div>
     </div>
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/admin/js/treasuries.js') }}"></script>
 @endsection

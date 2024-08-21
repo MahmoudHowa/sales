@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\TreasuriesController;
 |
 */
 
-define('PAGINATION_COUNT', 1);
+define('PAGINATION_COUNT', 7);
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     // Route::get('logout', function() {
@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::get('/treasuries/edit/{id}', [TreasuriesController::class, 'edit'])->name('admin.treasuries.edit');
     Route::post('/treasuries/update/{id}', [TreasuriesController::class, 'update'])->name('admin.treasuries.update');
     Route::post('/treasuries/ajax_search', [TreasuriesController::class, 'ajax_search'])->name('admin.treasuries.ajax_search');
+    Route::get('/treasuries/details/{id}', [TreasuriesController::class, 'details'])->name('admin.treasuries.details');
 
     /*         end treasuries             */
 });

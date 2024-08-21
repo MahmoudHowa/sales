@@ -6,6 +6,7 @@ use App\Models\Treasuries;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TreasuriesRequest;
 use App\Models\Admin;
+use App\Models\Treasuries_delivery;
 use Illuminate\Http\Request;
 use PhpParser\Builder\Trait_;
 use PhpParser\Node\Stmt\TryCatch;
@@ -105,6 +106,33 @@ class TreasuriesController extends Controller
             $search_by_text=$request->search_by_text;
             $data=Treasuries::where('name','LIKE',"%{$search_by_text}%")->orderBy('id','ASC')->paginate(PAGINATION_COUNT);
             return view('admin.treasuries.ajax_search',['data'=>$data]);
+        }
+    }
+
+    public function details($id){
+        try{
+            $com_code = auth()->user()->com_code;
+            $data=Treasuries::select()->find($id);
+            if(empty($data)){
+            return redirect()->route('admin.treasuries.index')->with(['error'=> 'عفواً لا يمكن الوصول الى البيانات المطلوبة'] );
+            }
+            $data['added_by_admin'] = Admin::where('id',$data['added_by'] )->value('name');
+            if($data['updated_by'] > 0 && $data['updated_by'] != null){
+                $data['updated_by_admin'] = Admin::where('id',$data['updated_by'])->value('name');
+            }
+
+
+            $treasuries_delivery=Treasuries_delivery::select()->where(['treasuries_id'=>$id])->orderBy('id','ASC')->get();
+            if(!empty($treasuries_delivery)){
+                foreach($treasuries_delivery as $info){
+                    $info->name=Treasuries::where('id',$info->treasuries_can_delivery_id)->value('name');
+                    $info->added_by_admin=Admin::where('id',$info->added_by)->value('name');
+
+                }
+            }
+            return view('admin.treasuries.details',['data'=>$data,'treasuries_delivery'=>$treasuries_delivery]);
+        }catch(\Exception $ex){
+            return redirect()->back()->with(['error'=> 'عفواً حدث خطأ ما'.'  '.$ex->getMessage()] )->withInput();
         }
     }
 }

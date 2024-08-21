@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    الضبط العام
+    بيانات الخزن
 @endsection
 
 @section('contentheader')
@@ -96,7 +96,7 @@
                                     </td>
                                     <td>
                                         <a href=" {{ route('admin.treasuries.edit', $info->id) }} " class="btn btn-sm btn-primary">تعديل</a>
-                                        <button data-id="{{ $info->id }}" class="btn btn-sm btn-info">المزيد</button>
+                                        <a href=" {{ route('admin.treasuries.details', $info->id) }} " class="btn btn-sm btn-info">المزيد</a>
                                     </td>
                                 </tr>
                                 @php

@@ -98,7 +98,7 @@
 
                     <div class="card-header">
                         <h4 class="card-title card_title_center">الخزن الفرعية التي تسلم عهدتها الى الخزنة ({{ $data['name'] }})</h4>
-                        <a href="#" class="btn btn-sm btn-info">إضافة خزنة تسليم</a>
+                        <a href="{{ route('admin.treasuries.add_treasuries_delivery',$data['id']) }}" class="btn btn-sm btn-info">إضافة خزنة تسليم</a>
                     </div>
                     <div id="ajax_responce_searchDiv">
                         @if(@isset($treasuries_delivery) && !@empty($treasuries_delivery))
@@ -107,7 +107,7 @@
                         @endphp
                         <table id="example2" style="text-align: center" class="table table-bordered table-hover">
                             <thead class="custom_thead">
-                                <th>رقم تسلسل</th>
+                                <th>رقم الخزنة</th>
                                 <th>اسم الخزنة</th>
                                 <th>----</th>
                                 <th>تاريخ الإضافة</th>
@@ -117,7 +117,7 @@
                             <tbody>
                                 @foreach ($treasuries_delivery as $info)
                                 <tr>
-                                    <td>{{ $i }}</td>
+                                    <td>{{ $info->treasuries_can_delivery_id }}</td>
                                     <td>{{ $info->name }}</td>
                                     <td>------</td>
                                     <td>
@@ -156,8 +156,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-danger">حذف</a>
-                                        {{--  <a href=" {{ route('admin.treasuries.details', $info->id) }} " class="btn btn-sm btn-info">المزيد</a>  --}}
+                                        <a href="{{ route('admin.treasuries.delete_treasuries_delivery',$info->id) }}" class="btn btn-sm btn-danger  are_you_shu">حذف</a>
                                     </td>
                                 </tr>
                                 @php

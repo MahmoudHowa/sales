@@ -185,8 +185,10 @@ class TreasuriesController extends Controller
                 if($flag){
                     return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
                 }else{
-                    return redirect()->back()->with(['error'=>'عفوا لايمكن الوصول للبيانات المطلوبة']);
+                    return redirect()->back()->with(['error'=>'عفوا حدث خطأ ما']);
                 }
+            }else{
+                return redirect()->back()->with(['error'=>'عفوا لايمكن الوصول للبيانات المطلوبة']);
             }
         }
         catch(\Exception $ex){

@@ -63,7 +63,7 @@
                                             {{ $time }}
                                             {{ $newDateTimeType }}
                                             بواسطة
-                                            {{ $info->updated_by_admin }}
+                                            {{ $info->added_by_admin }}
                                     </td>
                                     <td>
                                         @if ($info->updated_by > 0  and  $info->updated_by != null)

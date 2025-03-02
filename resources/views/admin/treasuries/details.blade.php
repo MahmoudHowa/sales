@@ -9,7 +9,7 @@
 @endsection
 
 @section('contentheaderlink')
-    <a href="{{ route('admin.adminPanelSetting.index') }}">الخزن</a>
+    <a href="{{ route('admin.treasuries.index') }}">الخزن</a>
 @endsection
 
 @section('contentheaderactive')

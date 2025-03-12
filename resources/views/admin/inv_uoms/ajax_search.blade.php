@@ -4,11 +4,9 @@
 @endphp
     <table id="example2" style="text-align: center" class="table table-bordered table-hover">
         <thead class="custom_thead">
-            <th>رقم الخزنة</th>
-            <th>اسم الخزنة</th>
-            <th>رئيسية أم لا</th>
-            <th>آخر إيصال صرف</th>
-            <th>آخر إيصال تحصيل</th>
+            <th>رقم الوحدة</th>
+            <th>اسم الوحدة</th>
+            <th>نوع الوحدة</th>
             <th>حالة التفعيل</th>
             <th>تاريخ الإضافة</th>
             <th>تاريخ التحديث</th>
@@ -19,9 +17,7 @@
             <tr>
                 <td>{{ $info->id }}</td>
                 <td>{{ $info->name }}</td>
-                <td>@if($info->is_master == 1) رئيسية @else فرعية @endif</td>
-                <td>{{ $info->last_isal_exchange }}</td>
-                <td>{{ $info->last_isal_collect }}</td>
+                <td>@if($info->is_master == 1) رئيسية @else تجزئة @endif</td>
                 <td>@if($info->active == 1) مفعلة @else معطلة @endif</td>
                 <td>
                         @php
@@ -36,7 +32,7 @@
                         {{ $time }}
                         {{ $newDateTimeType }}
                         بواسطة
-                        {{ $info->updated_by_name }}
+                        {{ $info->added_by_name }}
                 </td>
                 <td>
                     @if ($info->updated_by > 0  and  $info->updated_by != null)
@@ -59,9 +55,8 @@
                     @endif
                 </td>
                 <td>
-                    <a href=" {{ route('admin.treasuries.edit', $info->id) }} " class="btn btn-sm btn-primary">تعديل</a>
-                    <a href=" {{ route('admin.treasuries.details', $info->id) }} " class="btn btn-sm btn-info">المزيد</a>
-                    {{--  <button data-id="{{ $info->id }}" class="btn btn-sm btn-info">المزيد</button>  --}}
+                    <a href=" {{ route('admin.uoms.edit', $info->id) }} " class="btn btn-sm btn-primary">تعديل</a>
+                    <a href=" {{ route('admin.uoms.delete', $info->id) }} " class="btn btn-sm btn-danger">حذف</a>
                 </td>
             </tr>
             @php

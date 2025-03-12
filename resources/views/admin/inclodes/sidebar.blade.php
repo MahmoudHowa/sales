@@ -75,6 +75,14 @@
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             بيانات المخازن
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.uoms.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            بيانات الوحدات
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>

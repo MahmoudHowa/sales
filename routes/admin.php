@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Admin_panel_settingsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Inv_UomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\Sales_material_typesController;
@@ -63,6 +64,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::get('/stores/delete_stores/{id}', [StoresController::class, 'delete_stores'])->name('admin.stores.delete_stores');
 
     /*         end stores           */
+
+    /*         start Uoms           */
+    Route::get('/uoms/index', [Inv_UomController::class, 'index'])->name('admin.uoms.index');
+    Route::get('/uoms/create', [Inv_UomController::class, 'create'])->name('admin.uoms.create');
+    Route::post('/uoms/store', [Inv_UomController::class, 'store'])->name('admin.uoms.store');
+    Route::get('/uoms/edit/{id}', [Inv_UomController::class, 'edit'])->name('admin.uoms.edit');
+    Route::post('/uoms/update/{id}', [Inv_UomController::class, 'update'])->name('admin.uoms.update');
+    Route::get('/uoms/delete/{id}', [Inv_UomController::class, 'delete'])->name('admin.uoms.delete');
+    Route::post('/uoms/ajax_search', [Inv_UomController::class, 'ajax_search'])->name('admin.uoms.ajax_search');
+
+    /*         end Uoms           */
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'guest:admin'], function() {

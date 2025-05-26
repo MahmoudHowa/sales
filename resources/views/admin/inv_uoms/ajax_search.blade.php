@@ -73,4 +73,5 @@
     <div class="alert alert-danger">
     عفواً لا يوجد بيانات لعرضها   !!!
     </div>
+    {{--  To inform GitHub that I am working on Ajax Search  --}}
 @endif

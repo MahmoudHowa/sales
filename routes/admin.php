@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Admin_panel_settingsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Inv_itemcard_categoriesController;
 use App\Http\Controllers\Admin\Inv_UomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
@@ -22,7 +23,7 @@ use App\Http\Controllers\Admin\TreasuriesController;
 
 define('PAGINATION_COUNT', 7);
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     // Route::get('logout', function() {
     //     auth()->logout();
     // });
@@ -75,9 +76,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::post('/uoms/ajax_search', [Inv_UomController::class, 'ajax_search'])->name('admin.uoms.ajax_search');
 
     /*         end Uoms           */
+
+    /*         start inv_itemcard_categories           */
+    Route::get('/Inv_itemcard_categories/delete/{id}', [Inv_itemcard_categoriesController::class, 'delete'])->name('admin.Inv_itemcard_categories.delete');
+    Route::resource('/Inv_itemcard_categories',Inv_itemcard_categoriesController::class);
+    /*         end inv_itemcard_categories           */
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'guest:admin'], function() {
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'guest:admin'], function() {
     Route::get('login', [LoginController::class, 'show_login_view'])->name('admin.showLogin');
     Route::post('login', [LoginController::class, 'login'])->name('admin.login');
 });

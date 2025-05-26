@@ -82,7 +82,15 @@
                     <a href="{{ route('admin.uoms.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            بيانات الوحدات
+                            بيانات وحدات الأصناف
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('Inv_itemcard_categories.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            بيانات فئات الأصناف
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
